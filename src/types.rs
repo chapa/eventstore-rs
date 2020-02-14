@@ -1405,7 +1405,7 @@ impl GossipSeedClusterSettings {
     }
 }
 
-mod guid {
+pub(crate) mod guid {
     use bytes::Bytes;
     use uuid::{BytesError, Uuid};
 

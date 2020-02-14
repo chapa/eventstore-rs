@@ -11,6 +11,7 @@ use uuid::{BytesError, Uuid};
 use crate::internal::command::Cmd;
 use crate::internal::messaging::Msg;
 use crate::internal::package::Pkg;
+use crate::types::guid;
 
 pub struct Connection {
     pub id: Uuid,
@@ -33,7 +34,7 @@ async fn decode_pkg(reading: &mut ReadHalf<TcpStream>) -> std::io::Result<Pkg> {
 
     src.read_exact(&mut uuid).await?;
 
-    let correlation = Uuid::from_slice(&uuid).map_err(decode_bytes_error)?;
+    let correlation = guid::to_uuid(&uuid).map_err(decode_bytes_error)?;
     let mut payload: Vec<u8> = Vec::with_capacity(src.limit() as usize);
 
     src.read_to_end(&mut payload).await?;
@@ -55,7 +56,7 @@ async fn encode_pkg(dest: &mut WriteHalf<TcpStream>, pkg: Pkg) -> std::io::Resul
     AsyncWriteBytesExt::write_u32::<LittleEndian>(dest, size as u32).await?;
     AsyncWriteExt::write_u8(dest, pkg.cmd.to_u8()).await?;
     AsyncWriteExt::write_u8(dest, auth_flag).await?;
-    dest.write_all(pkg.correlation.as_bytes()).await?;
+    dest.write_all(&*guid::from_uuid(pkg.correlation)).await?;
 
     if let Some(creds) = pkg.creds_opt.as_ref() {
         AsyncWriteExt::write_u8(dest, creds.login.len() as u8).await?;
