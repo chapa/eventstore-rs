@@ -179,7 +179,7 @@ impl WriteEvents {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
@@ -289,7 +289,7 @@ impl ReadEvent {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
@@ -409,7 +409,7 @@ impl TransactionStart {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
@@ -535,7 +535,7 @@ impl TransactionWrite {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
@@ -663,7 +663,7 @@ impl TransactionCommit {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
@@ -811,7 +811,7 @@ impl ReadStreamEvents {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
@@ -936,7 +936,7 @@ impl ReadAllEvents {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
@@ -1063,7 +1063,7 @@ impl DeleteStream {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
@@ -1864,7 +1864,7 @@ impl CreatePersistentSubscription {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
@@ -1972,7 +1972,7 @@ impl UpdatePersistentSubscription {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
@@ -2053,7 +2053,7 @@ impl DeletePersistentSubscription {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.unwrap()
+        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
     }
 }
 
