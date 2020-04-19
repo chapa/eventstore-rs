@@ -659,6 +659,7 @@ pub mod tcp {
             let endpoint = conn_str.to_socket_addrs().unwrap().next().unwrap();
 
             let connection = eventstore::Connection::builder()
+                .connection_timeout(Duration::from_secs(0))
                 .connection_retry(Retry::Only(0))
                 .with_default_user(eventstore::Credentials::new("admin", "changeit"))
                 .single_node_connection(endpoint)
