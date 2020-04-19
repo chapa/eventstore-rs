@@ -179,7 +179,7 @@ impl WriteEvents {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
@@ -289,7 +289,7 @@ impl ReadEvent {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
@@ -409,7 +409,7 @@ impl TransactionStart {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
@@ -535,7 +535,7 @@ impl TransactionWrite {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
@@ -663,7 +663,7 @@ impl TransactionCommit {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
@@ -811,7 +811,7 @@ impl ReadStreamEvents {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
@@ -936,7 +936,7 @@ impl ReadAllEvents {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
@@ -1063,7 +1063,7 @@ impl DeleteStream {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
@@ -1864,7 +1864,7 @@ impl CreatePersistentSubscription {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
@@ -1972,7 +1972,7 @@ impl UpdatePersistentSubscription {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
@@ -2053,7 +2053,7 @@ impl DeletePersistentSubscription {
             Ok(()) as std::io::Result<()>
         });
 
-        promise.await.map_err(|_| types::OperationError::ConnectionHasDropped)?
+        promise.await.map_err(|_| types::OperationError::ConnectionClosed)?
     }
 }
 
