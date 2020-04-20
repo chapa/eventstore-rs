@@ -11,7 +11,7 @@ fn fresh_stream_id(prefix: &str) -> String {
 
 pub mod tcp {
     use super::fresh_stream_id;
-    use eventstore::{Slice, Retry};
+    use eventstore::{Retry, Slice};
     use futures::channel::oneshot;
     use futures::SinkExt;
     use std::collections::HashMap;
@@ -670,9 +670,21 @@ pub mod tcp {
 
             assert!(connection.read_all().execute().await.is_err());
             assert!(connection.read_all().execute().await.is_err());
-            assert!(connection.read_event(stream_id.as_str(), 0).execute().await.is_err());
-            assert!(connection.read_stream(stream_id.as_str()).execute().await.is_err());
-            assert!(connection.create_persistent_subscription(stream_id.as_str(), group_name).execute().await.is_err());
+            assert!(connection
+                .read_event(stream_id.as_str(), 0)
+                .execute()
+                .await
+                .is_err());
+            assert!(connection
+                .read_stream(stream_id.as_str())
+                .execute()
+                .await
+                .is_err());
+            assert!(connection
+                .create_persistent_subscription(stream_id.as_str(), group_name)
+                .execute()
+                .await
+                .is_err());
         });
     }
 }
